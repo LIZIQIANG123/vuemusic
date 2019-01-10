@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios'
-import { stat } from 'fs';
+import {
+  stat
+} from 'fs';
 
 Vue.use(Vuex);
 
@@ -15,10 +17,12 @@ const state = {
   createdMusicPance: [],
   ShoucangGedan: [],
   GendanId: '',
-  Gendan:[],
-  Gedanmusiccount:'',
-  Ge:[],
-  createdgedanname:'',
+  Gendan: [],
+  Gedanmusiccount: '',
+  Ge: [],
+  createdgedanname: '',
+  getgedan: [],
+  JingpinGedan: [],
 }
 
 
@@ -87,8 +91,18 @@ const actions = {
     commit
   }) {
     setTimeout(() => {
-      console.log(233)
+
       commit('ceated_gedan')
+    }, 500)
+  },
+  async getgedan({
+    commit
+  }) {
+    setTimeout(() => {
+      commit('getgedan')
+    }, 500),
+    setTimeout(() => {
+      commit('getjinpingedan')
     }, 500)
   },
 }
@@ -119,7 +133,6 @@ const mutations = {
     //获取用户Id
     axios.get("http://localhost:3000/login/status").then(
       res => {
-       
         state.userId = res.data.profile.userId;
         state.UserName = res.data.profile.nickname;
       },
@@ -130,21 +143,21 @@ const mutations = {
     );
 
   },
-  ceated_gedan(state){
-var url='http://localhost:3000/playlist/create?name='+state.createdgedanname
-axios.get(url).then(
-  res=>{
-console.log(888)
-  },err=>{
+  ceated_gedan(state) {
+    var url = 'http://localhost:3000/playlist/create?name=' + state.createdgedanname
+    axios.get(url).then(
+      res => {
+        console.log(888)
+      }, err => {
 
-  })
+      })
   },
   get_Userid(state) {
     console.log(state.createdMusicPance.length)
-  if(state.createdMusicPance.length>0){
-    
-    state.createdMusicPance=[]
-  }
+    if (state.createdMusicPance.length > 0) {
+
+      state.createdMusicPance = []
+    }
     console.log(state.userId)
     var url = 'http://localhost:3000/user/playlist?uid=' + state.userId
     axios.get(url).then(
@@ -158,7 +171,7 @@ console.log(888)
             state.createdMusicPance.num = state.createdMusicPance.length
           } else {
             state.ShoucangGedan.push(value)
-          
+
           }
         })
 
@@ -167,23 +180,39 @@ console.log(888)
         console.log(err)
       }
     );
-    console.log("我是第三个state.userid" + state.userId);
-
-
   },
   get_gedandetail(state) {
     var url = 'http://localhost:3000/playlist/detail?id=' + state.GendanId
     axios.get(url).then(
       res => {
         console.log(res)
-        state.Gendan=res
-     
-      }
-      , err => {
-console.log(err)
-    })
+        state.Gendan = res
+
+      }, err => {
+        console.log(err)
+      })
+  },
+  getgedan(state) {
+    var url = 'http://localhost:3000/top/playlist?limit=10'
+    axios.get(url).then(
+      res => {
+        state.getgedan = res.data.playlists
+console.log(state.getgedan)
+      }, err => {
+        console.log(err)
+      })
+  },
+  getjinpingedan(state) {
+    axios.get('http://localhost:3000/top/playlist/highquality?before=&limit=1').then(
+      res => {
+        state.JingpinGedan = res
+      }, err => {
+        console.log(err)
+      })
   }
 }
+
+
 export default new Vuex.Store({
   state,
   getters,

@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '@/components/Login/login'
 import mobielogin from '@/components/Login/mobielogin'
 import detail from '@/components/pages/detail'
+import allgedan from '@/components/pages/allgedan'
 
 
 
@@ -38,6 +39,12 @@ export default new Router({
       path: '/detail',
       name: 'detail',
       component: detail,
+   
+    },
+    {
+      path: '/allgedan',
+      name: 'allgedan',
+      component: allgedan,
    
     },
   ]

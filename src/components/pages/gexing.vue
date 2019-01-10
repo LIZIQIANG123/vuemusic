@@ -13,7 +13,7 @@
     </swiper>
     <div class="col-3">
       <grid :show-lr-borders="false" :show-vertical-dividers="false">
-        <grid-item v-for="(item,index) in gird" :key="index">
+        <grid-item v-for="(item,index) in gird" :key="index" @click.native="click(item)">
           <span class="fa-stack fa-lg" slot="icon">
             <i class="fa fa-circle-thin fa-stack-2x"></i>
             <i :class="item.icon"></i>
@@ -75,6 +75,30 @@ export default {
         setTimeout(() => {
               this.$router.push({ path: "/detail" });
         }, 1000);
+    },
+    click(value){
+     if(value.link=="私人fm"){
+
+     }
+      if(value.link=="每日推荐"){
+       
+     }
+      if(value.link=="歌单"){
+        
+      
+           this.$store.dispatch('getgedan')
+      
+        
+        setTimeout(() => {
+        
+             this.$router.push({path:"/allgedan"})
+     
+        }, 1000);
+    
+     }
+        if(value.link=="排行榜"){
+       
+     }
     }
   },
   created() {
@@ -95,10 +119,10 @@ export default {
     return {
       userEntity: [],
       gird: [
-        { text: "私人FM", link: "", icon: "fa  fa-podcast fa-stack-1x" },
-        { text: "每日推荐", link: "", icon: "fa fa-calendar-o fa-stack-1x" },
-        { text: "歌单", link: "", icon: "iconfont icon-gedan fa-stack-1x" },
-        { text: "排行榜", link: "", icon: "fa fa-bar-chart-o fa-stack-1x" }
+        { text: "私人FM", link: "私人fm", icon: "fa  fa-podcast fa-stack-1x" },
+        { text: "每日推荐", link: "每日推荐", icon: "fa fa-calendar-o fa-stack-1x" },
+        { text: "歌单", link: "歌单", icon: "iconfont icon-gedan fa-stack-1x" },
+        { text: "排行榜", link: "排行榜", icon: "fa fa-bar-chart-o fa-stack-1x" }
       ],
       swiper: [],
       tab: [
@@ -114,6 +138,9 @@ export default {
 
 
 <style scoped>
+.zhuye{
+  padding-top:46px
+}
 .tuijian >>> .weui-grid__icon {
   height: auto;
   width: 100%;
