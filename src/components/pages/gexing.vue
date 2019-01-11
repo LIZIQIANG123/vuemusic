@@ -30,6 +30,11 @@
             <img slot="icon" :src="item.picUrl">
           </grid-item>
         </grid>
+          <grid :cols="3" :show-lr-borders="false">
+       <grid-item v-for="(item, index) in userEntity" :key="index" :label="item.name" @click.native="godetail(item)">
+            <img slot="icon" :src="item.picUrl">
+          </grid-item>
+    </grid>
       </group>
     </div>
   </div>
@@ -114,6 +119,9 @@ export default {
     var userJsonStr = sessionStorage.getItem("tuijiangedan");
 
     that.userEntity = JSON.parse(userJsonStr);
+    console.log(1)
+
+    console.log(that.userEntity)
   },
   data() {
     return {
@@ -138,11 +146,15 @@ export default {
 
 
 <style scoped>
+.tuijian>>>.weui-grid__labe span{
+  display: block;
+  width:100%
+}
 .zhuye{
   padding-top:46px
 }
 .tuijian >>> .weui-grid__icon {
-  height: auto;
+  height: 33.333vw;
   width: 100%;
   display: flex;
   align-items: center;
