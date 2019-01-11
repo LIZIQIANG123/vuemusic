@@ -36,6 +36,17 @@
     </div>
     <gexing v-show="mymusic"></gexing>
     <mymusic v-show="!mymusic"></mymusic>
+
+    <audio
+      :src="musicurl"
+      controls="controls"
+      autoplay
+      style="width:100%;background-color: #f1f3f4"
+      preload="auto"
+      v-if="!(musicurl==''||musicurl==null)"
+      class="bottom"
+    ></audio>
+
     <!-- <side-bar></side-bar> -->
   </div>
 </template>
@@ -58,7 +69,8 @@ export default {
   },
   data() {
     return {
-      mymusic: true
+      mymusic: true,
+      musicurl: this.$store.state.musicurl
     };
   },
   methods: {
@@ -69,20 +81,29 @@ export default {
     showSide: function() {
       this.$store.dispatch("showSideBar");
     },
-    gomymusic() {  
-    
-        this.mymusic = false;
+    gomymusic() {
+      this.mymusic = false;
     },
     gotuijian() {
       this.mymusic = true;
     }
-  },created () {
-   
+  },
+  computed() {
+    if (this.musicurl!=null)
+    {
+      
+    }
   }
+  ,
+  created() {}
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.bottom {
+  position: fixed;
+  bottom: 0;
+}
 .overwrite-title-demo {
   margin-top: 6px;
 }

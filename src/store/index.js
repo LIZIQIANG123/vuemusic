@@ -23,6 +23,9 @@ const state = {
   createdgedanname: '',
   getgedan: [],
   JingpinGedan: [],
+  musicurl:'',
+  bofangzhuangtai:true,
+  MeirituijianGe:[]
 }
 
 
@@ -103,6 +106,13 @@ const actions = {
     }, 500),
     setTimeout(() => {
       commit('getjinpingedan')
+    }, 500)
+  },
+  async gettuijian({
+    commit
+  }) {
+    setTimeout(() => {
+      commit('gettuijian')
     }, 500)
   },
 }
@@ -206,6 +216,15 @@ console.log(state.getgedan)
     axios.get('http://localhost:3000/top/playlist/highquality?before=&limit=1').then(
       res => {
         state.JingpinGedan = res
+      }, err => {
+        console.log(err)
+      })
+  },
+  gettuijian(state){
+    axios.get('http://localhost:3000/recommend/songs').then(
+      res => {
+        state.MeirituijianGe = res.data.recommend
+        console.log(res)
       }, err => {
         console.log(err)
       })

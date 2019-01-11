@@ -33,7 +33,7 @@
     </group>
    
     <flexbox :gutter="0" wrap="wrap">
-      <flexbox-item v-for="i in  this.$store.state.getgedan" :key="i" :span="1/2">
+      <flexbox-item v-for="i in  this.$store.state.getgedan" :key="i" :span="1/2"  @click.native="godetail(i)">
      <card style="margin:0 auto;width:80%;">
       <img slot="header" :src="i.coverImgUrl" style="width:100%;"/>
       <div slot="content" class="card-padding">
@@ -82,6 +82,17 @@ export default {
   created () {
       this.jinpingedan=this.$store.state.JingpinGedan
      
+  },
+  methods: {
+    godetail(value){
+      console.log(value.id)
+      this.$store.state.GendanId=value.id
+        this.$store.dispatch('getgedandetail')
+        
+        setTimeout(() => {
+              this.$router.push({ path: "/detail" });
+        }, 1000);
+    },
   }
 };
 </script>

@@ -6,6 +6,8 @@ import login from '@/components/Login/login'
 import mobielogin from '@/components/Login/mobielogin'
 import detail from '@/components/pages/detail'
 import allgedan from '@/components/pages/allgedan'
+import meirituijian from '@/components/pages/meirituijian'
+
 
 
 
@@ -45,6 +47,12 @@ export default new Router({
       path: '/allgedan',
       name: 'allgedan',
       component: allgedan,
+   
+    },
+    {
+      path: '/meirituijian',
+      name: 'meirituijian',
+      component: meirituijian,
    
     },
   ]

@@ -30,11 +30,6 @@
             <img slot="icon" :src="item.picUrl">
           </grid-item>
         </grid>
-          <grid :cols="3" :show-lr-borders="false">
-       <grid-item v-for="(item, index) in userEntity" :key="index" :label="item.name" @click.native="godetail(item)">
-            <img slot="icon" :src="item.picUrl">
-          </grid-item>
-    </grid>
       </group>
     </div>
   </div>
@@ -86,7 +81,12 @@ export default {
 
      }
       if(value.link=="每日推荐"){
-       
+         this.$store.dispatch('gettuijian')
+          
+        setTimeout(() => {
+        
+           this.$router.push({path:"/meirituijian"})
+        },1000);
      }
       if(value.link=="歌单"){
         
