@@ -7,7 +7,7 @@ import mobielogin from '@/components/Login/mobielogin'
 import detail from '@/components/pages/detail'
 import allgedan from '@/components/pages/allgedan'
 import meirituijian from '@/components/pages/meirituijian'
-import ai from '@/components/pages/ce'
+
 
 
 
@@ -57,11 +57,6 @@ export default new Router({
       component: meirituijian,
    
     },
-    {
-      path: '/ai',
-      name: 'ai',
-      component: ai,
    
-    },
   ]
 })
