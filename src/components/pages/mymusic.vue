@@ -147,9 +147,9 @@
 </template>
 <script>
 import { Group, Cell, Badge, CellBox, TransferDom, Popup,Confirm  } from "vux";
-import axios from "axios";
+
 import { throws } from 'assert';
-axios.defaults.withCredentials = true;
+
 export default {
   directives: {
     TransferDom

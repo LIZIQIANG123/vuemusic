@@ -82,7 +82,6 @@
 </template>
 <script>
 import { XHeader, Cell, Group, Popup, Flexbox, FlexboxItem } from "vux";
-import axios from "axios";
 const musicman = "";
 export default {
   components: {
@@ -143,7 +142,7 @@ export default {
     var url =
       "http://localhost:3000/user/detail?uid=" +
       this.$store.state.Gendan.data.playlist.userId;
-    axios.get(url).then(
+    this.axios.get(url).then(
       res => {
         that.createdpic = res.data.profile.avatarUrl;
         that.GendanCreateUser = res.data.profile.nickname;
@@ -155,19 +154,23 @@ export default {
   },
   methods: {
     bofang(value) {
+        
         var that=this
+        this.$store.state.musicurl=""
+       
       var url = "http://localhost:3000/song/url?id=" + value.id;
-      axios.get(url).then(
-        res => {
-        that.$store.state.musicurl= res.data.data[0].url
-        that.$store.state.bofangzhuangtai=true
+    this.axios.get(url).then(
+        res => {    
+        this.$store.state.musicurl= res.data.data[0].url
+       
+        this.$store.state.bofangzhuangtai=true
 
         },
         err => {
           console.log(err);
         }
       );
-      console.log(value);
+     
     },
     gozhuye() {
       console.log(333);
@@ -183,7 +186,9 @@ export default {
 };
 </script>
 <style scoped>
-
+.detail{
+margin-bottom: 54px;
+}
 .fontsize {
   font-size: 16px;
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <div class="head">
       <x-header title="slot:overwrite-title">
         <!--左侧按钮-->
@@ -37,15 +37,7 @@
     <gexing v-show="mymusic"></gexing>
     <mymusic v-show="!mymusic"></mymusic>
 
-    <audio
-      :src="musicurl"
-      controls="controls"
-      autoplay
-      style="width:100%;background-color: #f1f3f4"
-      preload="auto"
-      v-if="!(musicurl==''||musicurl==null)"
-      class="bottom"
-    ></audio>
+   
 
     <!-- <side-bar></side-bar> -->
   </div>
@@ -70,7 +62,7 @@ export default {
   data() {
     return {
       mymusic: true,
-      musicurl: this.$store.state.musicurl
+    
     };
   },
   methods: {
@@ -100,9 +92,8 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bottom {
-  position: fixed;
-  bottom: 0;
+.home{
+  margin-bottom: 54px;
 }
 .overwrite-title-demo {
   margin-top: 6px;

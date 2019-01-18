@@ -9,14 +9,14 @@ import store from '@/store/index.js';
 import 'font-awesome/css/font-awesome.css'
 Vue.directive('transfer-dom', TransferDom)
 Vue.config.productionTip = false
-
+axios.defaults.withCredentials = true;
+Vue.prototype.axios = axios
 /* eslint-disable no-new */
 let vueProject= new Vue({
   el: '#app', 
   router,
   store,
   components: { App },
- 
   template: '<App/>',
  
 })

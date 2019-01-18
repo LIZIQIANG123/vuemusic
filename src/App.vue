@@ -2,16 +2,38 @@
   <div id="app">
    
     <router-view/>
+     <audio
+      
+      controls="controls"
+      autoplay
+      style="width:100%;background-color: #f1f3f4"
+      preload="auto"
+      v-if="!(this.$store.state.musicurl==''||this.$store.state.musicurl==null)"
+      class="bottom"
+    >
+     <source :src="this.$store.state.musicurl">
+    </audio>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+     
+    }
+  },
+ 
 }
 </script>
 
 <style>
+.bottom {
+  
+  position: fixed;
+  bottom: 0;
+}
 
 *{
   margin: 0;

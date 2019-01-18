@@ -69,6 +69,9 @@ export default {
 .head >>> .vux-header-left {
   top: 10px;
 }
+.head >>> .vux-header-right {
+  top: 10px;
+}
 .head >>> .vux-button-group > a.vux-button-tab-item-last {
   border: none;
   border-top-right-radius: 0;

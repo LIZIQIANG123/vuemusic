@@ -86,7 +86,7 @@ const actions = {
     commit
   }) {
     setTimeout(() => {
-      console.log(233)
+      (console.log(233))
       commit('get_gedandetail')
     }, 500)
   },

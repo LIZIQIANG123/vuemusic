@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <x-header :left-options="{backText: ''}">
       <i class="fa fa-arrow-left" aria-hidden="true" slot="overwrite-left">
         <span style="display=block;margin-left:20px">歌单</span>
@@ -19,15 +19,15 @@
     <group>
         <cell>
           
-        <span slot="icon" style="font-size:12px">全部歌单</span>
+        <span slot="icon" style="font-size:12px">{{name}}</span>
         <span slot="inline-desc" style="font-size:12px;margin-left:10px" >
             <i  class="fa fa-chevron-right" aria-hidden="true"></i>
         </span>
      
         <span after-title  style="font-size:12px;">
-            <a>华语</a>&nbsp|&nbsp
-             <a>民谣</a>&nbsp|&nbsp
-             <a>电子</a>
+            <a @click="xiangqing('华语')">华语</a>&nbsp|&nbsp
+             <a @click="xiangqing('民谣')">民谣</a>&nbsp|&nbsp
+             <a @click="xiangqing('电子')">电子</a>
         </span>
         </cell>
     </group>
@@ -49,7 +49,13 @@ white-space: nowrap;">{{i.creator.nickname}}</p></flexbox-item>
         </p>
           
         </div>
-      <p style="font-size:12px;height:40px;line-height:20px">{{i.name}}</p>
+      <p style="font-size:12px;height:40px;line-height:20px;text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;">{{i.name}}</p>
       </div>
     </card>
     
@@ -76,7 +82,8 @@ export default {
   },
   data () {
       return {
-          jinpingedan:this.$store.state.JingpinGedan
+          jinpingedan:this.$store.state.JingpinGedan,
+          name:'全部'
       }
   },
   created () {
@@ -93,6 +100,18 @@ export default {
               this.$router.push({ path: "/detail" });
         }, 1000);
     },
+    xiangqing(value){
+      var url = "http://localhost:3000/top/playlist/highquality?cat="+value+"&limit=20"
+      this.axios.get(url).then(
+        res => {
+       this.$store.state.getgedan=res.data.playlists
+
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 };
 </script>
@@ -100,5 +119,15 @@ export default {
 @import '~vux/src/styles/1px.less';
 .card-padding {
   padding: 15px;
+  padding-left: 0;
+    padding-right: 0;
+}
+.body{
+  margin-bottom: 54px;
+}
+.vux-header{
+      position: sticky;
+    top: 0;
+    z-index: 999
 }
 </style>
