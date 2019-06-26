@@ -8,6 +8,9 @@ import detail from '@/components/pages/detail'
 import allgedan from '@/components/pages/allgedan'
 import meirituijian from '@/components/pages/meirituijian'
 
+import paihang from '@/components/pages/paihang'
+import search from '@/components/pages/search'
+
 
 
 
@@ -57,6 +60,18 @@ export default new Router({
       component: meirituijian,
    
     },
+    {
+      path: '/paihang',
+      name: 'paihang',
+      component: paihang,
    
+    },
+    ,
+    {
+      path: '/search',
+      name: 'search',
+      component: search,
+   
+    },
   ]
 })

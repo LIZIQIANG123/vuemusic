@@ -192,6 +192,7 @@ const mutations = {
     );
   },
   get_gedandetail(state) {
+   
     var url = 'http://localhost:3000/playlist/detail?id=' + state.GendanId
     axios.get(url).then(
       res => {

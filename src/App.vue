@@ -2,21 +2,29 @@
   <div id="app">
    
     <router-view/>
+   
+   <div id="audioBox">
+
+</div>
+<div   v-if="!(this.$store.state.musicurl.length==0)">
      <audio
       
       controls="controls"
-      autoplay
+     autoplay
       style="width:100%;background-color: #f1f3f4"
-      preload="auto"
-      v-if="!(this.$store.state.musicurl==''||this.$store.state.musicurl==null)"
+    
+    
       class="bottom"
+    
     >
      <source :src="this.$store.state.musicurl">
     </audio>
+    </div>
   </div>
 </template>
 
 <script>
+ 
 export default {
   name: 'App',
   data () {

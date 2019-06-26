@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <x-header :left-options="{backText: ''}">
+    <x-header :left-options="{backText: ''}" @click.native="goqian">
       <i class="fa fa-arrow-left" aria-hidden="true" slot="overwrite-left">
         <span style="display=block;margin-left:20px">歌单</span>
       </i>
@@ -91,7 +91,11 @@ export default {
      
   },
   methods: {
+    goqian(){
+this.$router.go(-1);
+    },
     godetail(value){
+      this.$store.state.GendanId=""
       console.log(value.id)
       this.$store.state.GendanId=value.id
         this.$store.dispatch('getgedandetail')

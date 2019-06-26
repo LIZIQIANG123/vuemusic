@@ -156,12 +156,11 @@ export default {
     bofang(value) {
         
         var that=this
-        this.$store.state.musicurl=""
-       
+      this.$store.state.musicurl=""
       var url = "http://localhost:3000/song/url?id=" + value.id;
     this.axios.get(url).then(
         res => {    
-        this.$store.state.musicurl= res.data.data[0].url
+        this.$store.state.musicurl=res.data.data[0].url;
        
         this.$store.state.bofangzhuangtai=true
 

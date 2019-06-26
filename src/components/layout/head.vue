@@ -25,7 +25,7 @@
       </div>
       <!--右侧的按钮-->
       <div slot="right">
-        <button-tab>
+        <button-tab @click.native="gosearch">
           <button-tab-item>
             <i class="fa fa-search fa-2x" aria-hidden="true"></i>
           </button-tab-item>
@@ -58,6 +58,11 @@ export default {
      
         this.$emit('gomymusic', this.msg)
      
+    },
+     gosearch(){
+     
+        this.$emit('gosearch', this.msg)
+  
     }
   }
 };

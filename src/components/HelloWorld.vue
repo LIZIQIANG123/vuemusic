@@ -26,7 +26,7 @@
         </div>
         <!--右侧的按钮-->
         <div slot="right">
-          <button-tab>
+          <button-tab @click.native="gosearch">
             <button-tab-item>
               <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             </button-tab-item>
@@ -78,15 +78,11 @@ export default {
     },
     gotuijian() {
       this.mymusic = true;
-    }
+    },
+    gosearch() {
+      this.$router.push({path:"/search"})
+    },
   },
-  computed() {
-    if (this.musicurl!=null)
-    {
-      
-    }
-  }
-  ,
   created() {}
 };
 </script>
@@ -99,6 +95,9 @@ export default {
   margin-top: 6px;
 }
 .head >>> .vux-header-left {
+  top: 10px;
+}
+.head >>> .vux-header-right {
   top: 10px;
 }
 .head >>> .vux-button-group > a.vux-button-tab-item-last {

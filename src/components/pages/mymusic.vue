@@ -172,7 +172,7 @@ export default {
       that.title = "歌单：" + value.title;
     },
     godetail(value) {
-      console.log(value.id);
+    this.$store.state.GendanId=""
       this.$store.state.GendanId = value.id;
       this.$store.dispatch("getgedandetail");
 

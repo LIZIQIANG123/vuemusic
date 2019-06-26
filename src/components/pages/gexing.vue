@@ -35,7 +35,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import {
   Tab,
   TabItem,
@@ -68,6 +67,7 @@ export default {
       console.log("on item click:", index);
     },
     godetail(value){
+       this.$store.state.Gendan.id="";
       console.log(value.id)
       this.$store.state.GendanId=value.id
         this.$store.dispatch('getgedandetail')
@@ -102,13 +102,18 @@ export default {
     
      }
         if(value.link=="排行榜"){
-       
+          
+            setTimeout(() => {
+        
+           this.$router.push({path:"/paihang"})
+        },1000);
+            
      }
     }
   },
   created() {
     var that = this;
-    axios.get("http://localhost:3000/banner").then(
+    this.axios.get("http://localhost:3000/banner").then(
       res => {
         that.swiper = res.data.banners;
       },
